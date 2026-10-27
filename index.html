@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./dice-4.png" type="image/x-icon">
+    <title>Dice Game</title>
+</head>
+<body>
+    <h1 id="greet"></h1>
+
+    <h1 class="game">🎲DICE GAME</h1>
+    <h3>Roll the dice and beat the computer</h3>
+    <div class="board">
+    <p>Player1: <span id="ply-1">0</span></p>
+    <p>Player2: <span id="ply-2">0</span></p>
+    </div>
+
+    <div>
+        <img src="./dice-1.png" alt="dice">
+        <img src="./dice-5.png" alt="dice">
+    </div>
+    <p id="demo"></p>
+
+    <div class="butt">
+    <button id="but1">🎲 Roll dice</button>
+    <button id="but2">🔄 Refresh</button>
+    </div>
+    
+
+    <script>
+
+        let time = document.getElementById('greet');
+
+        let button1 = document.getElementById('but1');
+        let button2 = document.getElementById('but2');   
+
+        let ply1 = document.getElementById('ply-1')
+        let ply2 = document.getElementById('ply-2')
+
+
+        const hi = new Date ();
+        const later = hi.getHours();
+    
+        if (later <12) {
+            time.innerHTML = 'Hello, Good Morning'
+        } else if(later <16) {
+           time.innerHTML = 'Hello, Good Day' 
+        } else {
+            time.innerHTML = 'Hello, Good Evening'
+        }
+
+        button1.addEventListener('click', rollDice);
+        function rollDice() {
+            //first dice
+        let randNum1 = Math.random()*6+1;
+        let roundNum1 = Math.floor(randNum1);
+
+        let dice1 = document.querySelectorAll('img')[0];
+
+        let randImg1 = "./dice-"+roundNum1+".png";
+        console.log(randImg1);
+
+        dice1.setAttribute('src', randImg1);
+        
+        //Second dice
+        let randNum2 = Math.random()*6+1;
+        let roundNum2 = Math.floor(randNum2);
+
+        let dice2 = document.querySelectorAll('img')[1];
+
+        let randImg2 = "./dice-"+roundNum2+".png";
+        console.log(randImg2);
+
+        dice2.setAttribute('src', randImg2);
+
+
+    //     console.log(roundNum);
+
+    let para = document.getElementById('demo');
+
+    if (roundNum1 > roundNum2) {
+        para.innerHTML = 'Player 1 win🎉!';
+        ply1.innerHTML++;
+    } else if(roundNum1 == roundNum2){
+      para.innerHTML = 'Draw☹️!'
+
+    }else{
+          para.innerHTML = 'Player 2 win🎉!';
+          ply2.innerHTML++;
+    }
+        }
+    button2.addEventListener('click', refresh);
+    function refresh(){
+        ply1.innerHTML =0;
+        ply2.innerHTML =0;
+    }
+
+    </script>
+    
+</body>
+</html> 
